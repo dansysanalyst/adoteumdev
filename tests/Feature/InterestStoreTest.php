@@ -23,15 +23,15 @@ it('checks if interests list was loaded', function () {
 
 it('stores interests form', function () {
     $payload = [
-        ['id' => 1, 'level' => 3, 'category_id' => 1],
-        ['id' => 2, 'level' => 4, 'category_id' => 1],
-        ['id' => 3, 'level' => 1, 'category_id' => 1],
-        ['id' => 4, 'level' => 5, 'category_id' => 1],
+        ['id' => 1, 'level' => 3,],
+        ['id' => 2, 'level' => 4,],
+        ['id' => 3, 'level' => 1,],
+        ['id' => 4, 'level' => 5,],
     ];
 
     $user = User::firstWhere('email', '33piter@adoteum.dev');
 
-    $this->assertDatabaseMissing('interests', ['user_id' => $user->id]);
+    $user->interests()->forceDelete();
 
     actingAs($user->load('profile'));
 
